@@ -12,17 +12,15 @@
 
     <title>Peminjaman Laptop</title>
 </head>
-<body>
-  <nav class="navbar navbar-light bg-primary">
-    <div class="container-fluid">
-      <a class="navbar-brand text-white"><i class="fa-sharp fa-solid fa-laptop"></i> PEMINJAMAN LAPTOP</a>
-      
-    </div>
-  </nav>
+<body style="background-color: #E0ECFE">
+
+    {{-- <div class="d-flex justify-content-center bg-primary p-3">
+        <a class="navbar-brand text-white" href="{{route('index')}}"><i class="fa-sharp fa-solid fa-laptop"></i> PEMINJAMAN LAPTOP</a>
+    </div> --}}
  {{-- content tambahan di berbagai halaman --}}
     @yield('content')
 
-    
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>

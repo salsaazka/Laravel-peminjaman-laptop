@@ -8,7 +8,7 @@
     @if (Session::get('successAdd'))
     <div class="alert alert-success w-100">
        {{ Session::get('successAdd') }}
-    </div>  
+    </div>
   @endif
       <div class="info d-flex justify-content-between align-items-center">
 
@@ -16,11 +16,11 @@
 
               <span class="font-weight-bold"><img src="{{ asset('assets/img/wikrama.jpeg') }}" style="width: 80"> Data Peminjaman Laptop</span>
               <small>14 students in the group</small>
-              
+
           </div>
 
           <i class="fa fa-bell-o"></i>
-          
+
       </div>
 
 
@@ -32,13 +32,13 @@
 
               <span class="font-weight-bold"></span>
               <small>14 students from your group are online</small>
-              
+
           </div>
-          <a href="/create">
+          <a href="{{ route('create') }}">
           <i class="fa fa-angle-right text-white"></i>
           </a>
       </div>
-          
+
       </div>
 
 
@@ -48,17 +48,17 @@
 
               <span class="font-weight-bold">Today's Lession</span>
               <small>Unit-6 Articles</small>
-              
+
           </div>
 
           <small>12:00 PM</small>
-          
+
       </div>
 
 
-      
+
   </div>
-  
+
 
 </div>
   @endsection
