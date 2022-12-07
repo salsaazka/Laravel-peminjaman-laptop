@@ -1,33 +1,63 @@
 @extends('layout')
 
-@section('content')
-<div class="container rounded mt-5 bg-white p-md-5">
-    <div class="h2 font-weight-bold"></div>
-    <div class="table-responsive">
-        <table class="table">
+ @section('content')
+ <div class="container overflow-hidden text-center mt-5">
+    @if (Session::get('successAdd'))
+    <div class="alert alert-success w-100">
+       {{ Session::get('successAdd') }}
+    </div>  
+  @endif
+    <div class="card">
+        <table class="table table-hover table-responsive table-bordered table-stiped table">
             <thead>
                 <tr>
-                    <th scope="col">Name</th>                    
-                    <th scope="col">Date</th>                    
-                    <th scope="col">Time</th>                    
-                    <th scope="col">Status</th>                    
+                    <th scope="col">NIS</th>
+                            <th >Name</th>
+                            <th >Region</th>
+                            <th >Purpose</th>
+                            <th >Ket</th>
+                            <th >Date</th>
+                            <th >Teacher</th>
+                            <th >Return Date</th>
+                            <th >Action</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr class="bg-blue">            
-                    <td class="pt-2">
-                        <div class="pl-lg-5 pl-md-3 pl-1 name"></div>
-                    </td>                
-                    <td class="pt-3 mt-1"></td>
-                    <td class="pt-3"><span class="fa fa-check pl-3"></span></td>
-                    <td class="pt-3"><span class="fa fa-ellipsis-v btn"></span></td>
+            <tbody class="table-group-divider">
+                @foreach ($borrows as $borrow )
+                <tr>
+                    <td>{{ $borrow['nis'] }}</td>
+                    <td>{{ $borrow['name'] }}</td>
+                    <td>{{ $borrow['region'] }}</td>
+                    <td>{{ $borrow ['purposes']}}</td>
+                    <td>{{ $borrow['ket'] }}</td>
+                    <td>{{ \Carbon\Carbon::parse ($borrow['date'])->format('j F, Y') }}</td>
+                    <td>{{ $borrow['teacher'] }}</td>
+                    <td> <p class="text-muted"><span class="date">{{ 
+                    is_null($borrow['done_date']) ? '-' : \Carbon\Carbon::parse($borrow['done_date'])->format('j F, Y') 
+                    }}</span></p></td>
+                    <td>
+                        <div class="ml-auto"> 
+                                <form action="{{ route('delete', $borrow['id']) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                <button type="submit" class="fas fa-trash btn" ></button>
+                              </form>
+                        </div>
+                        <div class="ml-auto">
+                            <form action="/update" method="POST">
+                                @method('PATCH')
+                                @csrf
+                                <a href="/create/{{$borrow['id']}}" >
+                                    <i class="fas fa-arrow-right btn"> </i>
+                                  </a>
+                            </form>
+                        </div>
+                    </td>
                 </tr>
-                <tr id="spacing-row">
-                    <td></td>
-                </tr>
-               
+             @endforeach 
             </tbody>
+            
         </table>
+     </div>
     </div>
-</div>
-@endsection
+  @endsection

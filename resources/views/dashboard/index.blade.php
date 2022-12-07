@@ -5,11 +5,7 @@
 <div class="container d-flex justify-content-center mt-5 pt-5">
 
   <div class="card p-3 card-1">
-    @if (Session::get('successAdd'))
-    <div class="alert alert-success w-100">
-       {{ Session::get('successAdd') }}
-    </div>
-  @endif
+   
       <div class="info d-flex justify-content-between align-items-center">
 
           <div class="group d-flex flex-column">

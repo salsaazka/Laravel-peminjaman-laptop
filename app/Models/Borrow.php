@@ -16,7 +16,8 @@ class Borrow extends Model
         'region',
         'teacher',
         'date',
-        'status'
+        'status',
+        'done_time'
     ];
 
 }

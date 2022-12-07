@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('nis');
             $table->string('teacher');
             $table->date('date');
-            $table->boolean('status');
             $table->string('region');
+            $table->date('done_time')->nullable();
             $table->timestamps();
         });
     }

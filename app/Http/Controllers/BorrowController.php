@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 use App\Models\Borrow;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class BorrowController extends Controller
 {
@@ -21,11 +22,11 @@ class BorrowController extends Controller
 
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'name' => 'required|min:4',
-        //     'purposes' => 'required|min:8',
-        //     'date' => 'required',
-        // ]);
+        $request->validate([
+            'name' => 'required|min:4',
+            'purposes' => 'required|min:8',
+            'date' => 'required',
+        ]);
 
         Borrow::create([
             'name' => $request->name,
@@ -35,9 +36,36 @@ class BorrowController extends Controller
             'region' => $request->region,
             'teacher' => $request->teacher,
             'date' => $request->date,
-            'status' => 0,
         ]);
-        return redirect()->route('create')->with('successAdd', 'Anda berhasil mengisi data peminjam!');
+        return redirect()->route('data',)->with('successAdd', 'Anda berhasil mengisi data peminjam!');
+    }
+    public function data(){
+
+        $borrows = Borrow::All();
+        return view('dashboard.data', compact('borrows'));
     }
 
+     public function show(borrow $borrows)
+     {
+
+     }
+
+     public function edit($id)
+     {
+        // $borrow = Borrow::where('id', $id)->first();
+        // return view('dashboard.edit', compact('borrows'));
+     }
+
+     public function update(Request $request, $id)
+     {
+        Borrow::where('id',$id)->update([
+            'done_time' => Carbon::now(),
+        ]);
+        return redirect('/create')->with('successUpdate', 'Data berhasil diperbarui!');
+     }
+     public function destroy($id)
+     {
+        Borrow::where('id', $id)->delete();
+        return redirect()->route('data')->with('delete', 'Berhasil menghapus data!');
+     }
 }
