@@ -21,11 +21,11 @@ class BorrowController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|min:4',
-            'purposes' => 'required|min:8',
-            'date' => 'required',
-        ]);
+        // $request->validate([
+        //     'name' => 'required|min:4',
+        //     'purposes' => 'required|min:8',
+        //     'date' => 'required',
+        // ]);
 
         Borrow::create([
             'name' => $request->name,
