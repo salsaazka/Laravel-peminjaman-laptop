@@ -44,10 +44,10 @@
                               </form>
                         </div>
                         <div class="ml-auto">
-                            <form action="/update" method="POST">
+                            <form action="/update/{{ $borrow['id'] }}" method="POST">
                                 @method('PATCH')
                                 @csrf
-                                <a href="/create/{{$borrow['id']}}" >
+                                <a href="/create" >
                                     <i class="fas fa-arrow-right btn"> </i>
                                   </a>
                             </form>
