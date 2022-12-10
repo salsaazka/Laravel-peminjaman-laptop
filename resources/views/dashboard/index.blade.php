@@ -10,8 +10,9 @@
 
           <div class="group d-flex flex-column">
 
-              <span class="font-weight-bold"><img src="{{ asset('assets/img/wikrama.jpeg') }}" style="width: 80"> Data Peminjaman Laptop</span>
-              <small>14 students in the group</small>
+              <span class="font-weight-bold"><img src="{{ asset('assets/img/wikrama.jpeg') }}" style="width: 80"> Data Peminjaman Laptop
+              </span>
+              {{-- <small><i class="fa-solid fa-right-left"></i>{{ !is_null($borrow) ? count($borrow) : '-' }} Total laptop returned thid day</small> --}}
 
           </div>
 

@@ -52,16 +52,17 @@ class BorrowController extends Controller
 
      public function edit($id)
      {
-        // $borrow = Borrow::where('id', $id)->first();
-        // return view('dashboard.edit', compact('borrows'));
+        $borrow = Borrow::where('id', $id)->first();
+        return view('dashboard.edit', compact('borrow'));
      }
 
      public function update(Request $request, $id)
      {
-        Borrow::where('id',$id)->update([
+        Borrow::where('id', $id)->update([
             'done_time' => Carbon::now(),
         ]);
-        return redirect('/create')->with('successUpdate', 'Data berhasil diperbarui!');
+         return redirect('/data')->with('successUpdate', 'Data berhasil diperbarui!');
+    //     return redirect()->route('index')->with('done', 'Todo sudah selesai dikerjakan');
      }
      public function destroy($id)
      {

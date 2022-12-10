@@ -8,7 +8,7 @@
     </div>  
   @endif
     <div class="card">
-        <table class="table table-hover table-responsive table-bordered table-stiped table">
+        <table class="table table-hover table-responsive table-bordered table-stiped ">
             <thead>
                 <tr>
                     <th scope="col">NIS</th>
@@ -33,7 +33,7 @@
                     <td>{{ \Carbon\Carbon::parse ($borrow['date'])->format('j F, Y') }}</td>
                     <td>{{ $borrow['teacher'] }}</td>
                     <td> <p class="text-muted"><span class="date">{{ 
-                    is_null($borrow['done_date']) ? '-' : \Carbon\Carbon::parse($borrow['done_date'])->format('j F, Y') 
+                    is_null($borrow['done_time']) ? '-' : \Carbon\Carbon::parse($borrow['done_time'])->format('j F, Y') 
                     }}</span></p></td>
                     <td>
                         <div class="ml-auto"> 
@@ -44,13 +44,15 @@
                               </form>
                         </div>
                         <div class="ml-auto">
-                            <form action="/update/{{ $borrow['id'] }}" method="POST">
+                            <form action="{{ route('update', $borrow->id) }}" method="POST">
                                 @method('PATCH')
                                 @csrf
-                                <a href="/create" >
+                                <button type="submit" style="border: none; background:none;">
                                     <i class="fas fa-arrow-right btn"> </i>
-                                  </a>
+                                </button>
+                                  
                             </form>
+                            
                         </div>
                     </td>
                 </tr>
