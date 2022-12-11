@@ -26,7 +26,8 @@
                             <a class="text-muted mt-1 text-decoration-none" href="{{ route('index') }}">Laptop Landing >> 
                             <span class="text-primary">Create >><a href="/data" class="text-muted mt-1 text-decoration-none" >
                                 Data
-                            </span></a>
+                            </a>
+                            </span>
                         </a>
                             
                         </div>

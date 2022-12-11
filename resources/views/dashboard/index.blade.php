@@ -28,7 +28,7 @@
           <div class="group d-flex flex-column text-white">
 
               <span class="font-weight-bold"></span>
-              <small>14 students from your group are online</small>
+              <small><b>Welcome! Click Here</b></small>
 
           </div>
           <a href="{{ route('create') }}">
