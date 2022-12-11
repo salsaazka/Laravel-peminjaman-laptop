@@ -7,7 +7,7 @@
                 <div class="p-4">
                     <div class="d-flex justify-content-between">
                         <div>
-                            <h6 class="text-muted mb-1">Lab RPL/PPLG</h6>
+                            <h6 class="text-primary mb-1">Lab RPL/PPLG</h6>
                             <h6 class="text-muted">Laptop Landing</h6>
                         </div>
                         <div>
@@ -19,16 +19,24 @@
                             <img src="{{ asset('assets/img/rpl.png') }}" style="width: 110px; height: 110px">
                         </div>
                     </div>
+                    <div class="mt-3 d-flex justify-content-center">
+                        <div class="btn btn-primary me-1">
+                         Loaned <span class="badge text-bg-light">{{ $borrows->count()}}</span>
+                        </div>
+                        <div class="btn btn-success">
+                         Returned <span class="badge text-bg-light">{{ $borrow->count()}}</span>
+                        </div>
+                    </div>
                     <div class="row mt-3">
                         <div class="col-6">
                             <div class="card card2">
                                 <div class="card-body">
                                     <center class="mt-3">
-                                        <img src="{{ asset('assets/img/data.png') }}" style="width: 250px; height: 100%">
+                                        <img src="{{ asset('assets/img/form.png') }}" style="width: 150px; height: 100%">
                                         <br>
-                                        <h3 class="mt-4 fw-semibold text-primary">Table Data</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, at. Fugit, eveniet impedit culpa eum architecto saepe modi eaque provident tempora necessitatibus deleniti veritatis repellendus sequi reprehenderit! Possimus, soluta perspiciatis.</p>
-                                        <a href="{{ route('data') }}" class="btn btn-primary mt-2 mb-2">View Data</a>
+                                        <h3 class="mt-4 fw-semibold text-primary">Input Data</h3>
+                                        <p>In this section, you are required to fill in an input form as a condition for borrowing a laptop.</p>
+                                        <a href="{{ route('create') }}" class="btn btn-primary mt-2 mb-2">Input Data</a>
                                     </center>
                                 </div>
                             </div>
@@ -37,11 +45,11 @@
                             <div class="card card2">
                                 <div class="card-body">
                                     <center class="mt-3">
-                                        <img src="{{ asset('assets/img/form.png') }}" style="width: 250px; height: 100%">
+                                        <img src="{{ asset('assets/img/data.png') }}" style="width: 150px; height: 100%">
                                         <br>
-                                        <h3 class="mt-4 fw-semibold text-primary">Input Data</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, at. Fugit, eveniet impedit culpa eum architecto saepe modi eaque provident tempora necessitatibus deleniti veritatis repellendus sequi reprehenderit! Possimus, soluta perspiciatis.</p>
-                                        <a href="{{ route('create') }}" class="btn btn-primary mt-2 mb-2">Input Data</a>
+                                        <h3 class="mt-4 fw-semibold text-primary">Table Data</h3>
+                                        <p>In this section you can see the borrower's data along with a description of the return time.</p>
+                                        <a href="{{ route('data') }}" class="btn btn-primary mt-2 mb-2">View Data</a>
                                     </center>
                                 </div>
                             </div>

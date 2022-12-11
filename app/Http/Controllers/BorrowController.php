@@ -12,7 +12,9 @@ class BorrowController extends Controller
 
     public function index()
     {
-        return view('dashboard.index');
+        $borrows = Borrow::where('done_time', null)->get();
+        $borrow = Borrow::where('id', !null)->get();
+        return view('dashboard.index', compact('borrows', 'borrow'));
     }
 
     public function create()
