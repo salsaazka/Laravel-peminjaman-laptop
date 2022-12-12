@@ -9,7 +9,8 @@
   @endif
   <div class="justify-content-start pb-2">
     <a href="/" class="btn btn-success new"><i class="fas fa-backward"></i> Back to Home</a>
-    <a href="/create" class="btn btn-primary new"><i class="fas fa-backward"></i> Back to Form</a>   
+    <a href="/create" class="btn btn-primary new" target="_blank"><i class="fas fa-backward"></i> Back to Form</a>
+    <a href="/borrows/pdf" class="btn btn-warning " target="_blank">Export PDF</a>
   </div>
   <div class="container">
     <div class="card w-100" style="margin-top: 3rem; margin-bottom: 2rem">
@@ -58,6 +59,7 @@
                                 is_null($borrow['done_time']) ? '-' : \Carbon\Carbon::parse($borrow['done_time'])->format('j F, Y') 
                                 }}</span></p></td>
                                 <td>
+    
                                     <div class="ml-auto"> 
                                             <form action="{{ route('delete', $borrow['id']) }}" method="POST">
                                                 @csrf
@@ -80,6 +82,7 @@
                          @endforeach 
                         </tbody>
                     </table> 
+                    {{ $borrows->links() }}
                 </div>
              </div>
             </div>

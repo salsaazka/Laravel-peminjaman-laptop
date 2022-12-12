@@ -6,15 +6,17 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Borrow;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use PDF;
 
 class BorrowController extends Controller
 {
 
     public function index()
     {
-        $borrows = Borrow::where('done_time', null)->get();
-        $borrow = Borrow::where('id', !null)->get();
-        return view('dashboard.index', compact('borrows', 'borrow'));
+        $total= Borrow::where('id', !null)->get();
+        $borrow = Borrow::where('done_time', null)->get();
+        $borrows = Borrow::where('done_time', !null)->get();
+        return view('dashboard.index', compact('total','borrow', 'borrows'));
     }
 
     public function create()
@@ -43,10 +45,24 @@ class BorrowController extends Controller
     }
     public function data(){
 
-        $borrows = Borrow::All();
+        $borrows = Borrow::orderBy('date', 'DESC')->simplePaginate(5);
+        //kalau orderBy buat 2 argument (nama fieldnya dan tipe nya ASC/DESC)
+        // 1 data first, kalau all ambil data tanpa filter, kalau get ambil banyak data
+        //kalau pakai where, where dulu baru orderBy pakai ->
         return view('dashboard.data', compact('borrows'));
     }
 
+    public function createPDF()
+    {
+        $borrows = Borrow::orderBy('date', 'DESC')->get();
+        // share borrows to view (ambil data) -> redirect ke halaman view sama seperti compact
+        view()->share('borrows',$borrows);
+        // yang didalam petik nama yang ada di blade, $ ambil nama variable untuk models
+        //kalau mau didashboard 'dashboard.pdf_view'
+        $pdf = PDF::loadView('pdf_view', $borrows->toArray());
+        // download PDF file with download method
+        return $pdf->download('data_peminjaman.pdf');
+    }
      public function show(borrow $borrows)
      {
 

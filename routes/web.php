@@ -10,6 +10,7 @@ Route::get('/data', [BorrowController::class, 'data'])->name('data');
 Route::get('/edit/{id}', [BorrowController::class, 'edit'])->name('edit');
 Route::patch('/update/{id}', [BorrowController::class, 'update'])->name('update');
 Route::delete('/delete/{id}', [BorrowController::class, 'destroy'])->name('delete');
+Route::get('/borrows/pdf', [BorrowController::class, 'createPDF']);
 // Route::get('/', function(){
 //    return view('dashboard.index');
 // });
