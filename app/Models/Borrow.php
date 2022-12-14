@@ -17,7 +17,8 @@ class Borrow extends Model
         'teacher',
         'date',
         'status',
-        'done_time'
+        'done_time',
+        'user_id'
     ];
 
 }

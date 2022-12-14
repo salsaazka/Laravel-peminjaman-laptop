@@ -20,9 +20,9 @@
                         </div>
                     </div>
                     <div class="mt-3 d-flex justify-content-center">
-                        <div class="btn btn-warning me-1">
+                        {{-- <div class="btn btn-warning me-1">
                             Total <span class="badge text-bg-light">{{ $total->count()}}</span>
-                           </div>
+                           </div> --}}
                         <div class="btn btn-primary me-1">
                          Loaned <span class="badge text-bg-light">{{ $borrow->count()}}</span>
                         </div>

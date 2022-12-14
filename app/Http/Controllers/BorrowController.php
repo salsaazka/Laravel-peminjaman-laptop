@@ -5,18 +5,25 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 use App\Models\Borrow;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use PDF;
 
 class BorrowController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $total= Borrow::where('id', !null)->get();
-        $borrow = Borrow::where('done_time', null)->get();
-        $borrows = Borrow::where('done_time', !null)->get();
-        return view('dashboard.index', compact('total','borrow', 'borrows'));
+        // $total= Borrow::where('id', !null)->get();
+        // $borrow = Borrow::where([
+        //     ['done_time', '=',null->get()],
+        //     ['done_time'],
+        // ]);
+        $borrow = Borrow::where('done_time', '=',null)->get();
+        $borrows = Borrow::where('done_time', '<>',null)->get();
+        return view('dashboard.index', compact('borrow', 'borrows'));
     }
 
     public function create()
@@ -87,4 +94,62 @@ class BorrowController extends Controller
         Borrow::where('id', $id)->delete();
         return redirect()->route('data')->with('delete', 'Berhasil menghapus data!');
      }
+
+     
+    //login
+    public function login()
+    {
+        return view('LoginSystem.login');
+    }
+
+    public function register()
+    {
+        return view('LoginSystem.register');
+    }
+
+    public function inputRegister(Request$request)
+    {
+        //validasi
+        $request->validate([
+            'name' => 'required|min:3|max:50',
+            'username' => 'required|min:3|max:10',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect('/')->with('success', 'Selamat, anda berhasil membuat akun!');
+    }
+
+    public function auth(Request $request)
+    {
+        $request->validate([
+            'username' => 'required|exists:users,username',
+            'password' => 'required',
+        ],
+        [
+            'username.exists' => "Username ini tidak tersedia"
+        ]);
+
+        $user = $request->only('username', 'password');
+        if (Auth::attempt($user)) {
+            return redirect('/laptop/home');
+        } else {
+            return redirect('/')->with('fail', 'Gagal login, silahkan periksa dan coba lagi!');
+        }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
+    }
 }
+
+
