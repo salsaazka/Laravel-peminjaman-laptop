@@ -8,7 +8,7 @@
     </div>  
   @endif
   <div class="justify-content-start pb-2">
-    <a href="/" class="btn btn-success new"><i class="fas fa-backward"></i> Back to Home</a>
+    <a href="/home" class="btn btn-success new"><i class="fas fa-backward"></i> Back to Home</a>
     <a href="/create" class="btn btn-primary new" target="_blank"><i class="fas fa-backward"></i> Back to Form</a>
     <a href="/borrows/pdf" class="btn btn-warning " target="_blank">Export PDF</a>
   </div>

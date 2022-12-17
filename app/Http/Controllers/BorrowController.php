@@ -139,7 +139,7 @@ class BorrowController extends Controller
 
         $user = $request->only('username', 'password');
         if (Auth::attempt($user)) {
-            return redirect('/laptop/home');
+            return redirect()->route('index');
         } else {
             return redirect('/')->with('fail', 'Gagal login, silahkan periksa dan coba lagi!');
         }

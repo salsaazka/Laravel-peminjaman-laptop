@@ -13,7 +13,7 @@ Route::middleware('isGuest')->group(function(){
 // Route::get('/home', [BorrowController::class, 'index'])->name('home');
 Route::get('/logout', [BorrowController::class, 'logout'])->name('logout');
 
-Route::middleware('isLogin')->name('laptop.')->group(function () {
+Route::middleware('isLogin')->group(function () {
     Route::get('/home', [BorrowController::class, 'index'])->name('index');
     Route::get('/create', [BorrowController::class, 'create'])->name('create');
     Route::post('/store', [BorrowController::class, 'store'])->name('store');

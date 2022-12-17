@@ -24,10 +24,12 @@
                             Total <span class="badge text-bg-light">{{ $total->count()}}</span>
                            </div> --}}
                         <div class="btn btn-primary me-1">
-                         Loaned <span class="badge text-bg-light">{{ $borrow->count()}}</span>
+                         Loaned <span class="badge text-bg-light">{{ $borrow->count()}}</span><br>
+                         Time <span>{{ Carbon\Carbon::now()->format('j F, Y') }}</span>
                         </div>
                         <div class="btn btn-success">
-                         Returned <span class="badge text-bg-light">{{ $borrows->count()}}</span>
+                         Returned <span class="badge text-bg-light">{{ $borrows->count()}}</span><br>
+                         Time <span>{{ Carbon\Carbon::now()->format('j F, Y') }}</span>
                         </div>
                     </div>
                     <div class="row mt-3">

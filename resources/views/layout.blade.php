@@ -16,6 +16,16 @@
         <a class="navbar-brand text-white" href="{{route('index')}}"><i class="fa-sharp fa-solid fa-laptop"></i> PEMINJAMAN LAPTOP</a>
     </div> --}}
  {{-- content tambahan di berbagai halaman --}}
+    
+@if (Auth::check())
+<nav class="navbar navbar-light bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white"><i class="fas fa-list-ul"></i> Peminjaman Laptop</a>
+      <a href="/logout" class="btn btn-outline-light" ><i class="fas fa-sign-out-alt"></i> {{Auth::user()->name}} Logout</a>
+  </div>
+</nav>
+ 
+@endif
     @yield('content')
 
 

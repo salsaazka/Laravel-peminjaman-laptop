@@ -35,48 +35,62 @@
         </div>
       @endif
 
-          <div class="row justify-content-center mt-5">
-            <div class="col-md-6 col-lg-6 col-xl-5 d-flex justify-content-center">    
-              <img src="{{ asset('assets/img/Login.png') }}"
-                class="img-fluid" alt="This Login" width="375px" style="padding-top: 10px">
-            </div>
-            
-            <div class="col-md-8 col-lg-5 col-xl-6 offset-xl-1">
+      {{-- <div class="section">	
+        <div class="container"> 
+          <div class="row full-height justify-content-center">	
+            <div class="col-12 text-center align-self-center py-5">	
+              <div class="section pb-5 pt-5 pt-sm-2 text-center">	
+                <h6 class="mb-0 pb-3"><span>Log In </span><span>Sign Up</span></h6>	
+                <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>	
+                <label for="reg-log"></label>	<div class="card-3d-wrap mx-auto">	<div class="card-3d-wrapper">	
+                  <div class="card-front">	
+                    <div class="center-wrap">	
+                      <div class="section text-center">	
+                        <h4 class="mb-4 pb-3">Log In</h4>	
+                        <div class="form-group"> 
+                          <input type="email" name="logemail" class="form-style" placeholder="Your Email" id="logemail" autocomplete="none">	<i class="input-icon fa fa-at"></i>	</div>	
+                          <div class="form-group mt-2"> <input type="password" name="logpass" class="form-style" placeholder="Your Password" id="logpass" autocomplete="none">	<i class="input-icon fa fa-lock"></i>	</div>	
+                          <a href="#" class="btn mt-4">Login</a>	
+                          <p class="mb-0 mt-4 text-center"> <a href="#0" class="link">Forgot your password?</a> </p>	</div>	</div>	</div>	
+                          <div class="card-back">	
+                            <div class="center-wrap">	
+                              <div class="section text-center">	
+                                <h4 class="mb-4 pb-3">Sign Up</h4>	<div class="form-group"> <input type="text" name="logname" class="form-style" placeholder="Your Full Name" id="logname" autocomplete="none">	<i class="input-icon fa fa-user"></i>	</div>	<div class="form-group mt-2"> <input type="email" name="logemail" class="form-style" placeholder="Your Email" id="logemail" autocomplete="none">	<i class="input-icon fa fa-at"></i>	</div>	<div class="form-group mt-2"> <input type="password" name="logpass" class="form-style" placeholder="Your Password" id="logpass" autocomplete="none">	<i class="input-icon fa fa-lock"></i>	</div>	<a href="#" class="btn mt-4">Signup</a>	</div>	</div>	</div>	</div>	</div>	</div>	</div>	</div> </div>	</div> --}}
+
+  <div class="container-login d-flex justify-content-center">
+          <div class="card two login px-5 py-5 mb-2 mt-5">
+             <form action="{{ route('login.auth') }}" method="POST" class="">
+              @csrf
+              @method('POST')
               
-                <div class="d-flex justify-content-center mt-3">
-                  <h1 style="color: #062568"> Login</h1>
-                </div>
-
-               <form action="{{ route('login.auth') }}" method="POST" class="">
-                @csrf
-                @method('POST')
-                
-                 <!-- Email input -->
-                 <div class="form-outline mt-4 mb-4">
-                  <label class="form-label" >Username</label>
-                  <input type="text" name="username" class="form-control form-control-lg" />
-                </div>
-      
-                <!-- Password input -->
-                <div class="form-outline mb-4">
-                  <label class="form-label" >Password</label>
-                  <input type="password" name="password" class="form-control form-control-lg" />
-                </div>
-      
-                <div class="d-flex justify-content-around align-items-center mb-4">
-                  <!-- Checkbox -->
-                  <a href="/register">Create Account?</a>
-                </div>
-      
-                <!-- Submit button -->
-                <center>
-                  <button type="submit" class="btn btn-primary btn-lg btn-block ">Sign in</button>
-                </center>
-               </form>
-
-            </div>
+               <div class="form-outline mb-4">
+                <label class="form-label" >Username</label>
+                <input type="password" name="username" class="form-control form-control-lg" />
+              </div>
+    
+              <!-- Password input -->
+              <div class="form-outline mb-4">
+                <label class="form-label" >Password</label>
+                <input type="password" name="password" class="form-control form-control-lg" />
+              </div>
+    
+              <div class="d-flex justify-content-around align-items-center mb-4">
+                <!-- Checkbox -->
+                <a href="/register">Create Account?</a>
+              </div>
+    
+              <!-- Submit button -->
+              <center>
+                <button type="submit" class="btn btn-primary btn-block btn-lg mt-1 mb-2 "><span>Get started <i class="fas fa-long-arrow-alt-right ml-2"></i></span></button>
+              </center>
+             </form>
+       
           </div>
         </div>
-      </section>
-      @endsection('content')
+      </div>     
+   
+  </div>
+  </div> 
+</section>
+@endsection('content')
    
