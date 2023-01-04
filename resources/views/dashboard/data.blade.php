@@ -7,10 +7,16 @@
        {{ Session::get('successAdd') }}
     </div>  
   @endif
+  @if (Session::get('importSuccess'))
+    <div class="alert alert-success w-100">
+       {{ Session::get('importSuccess') }}
+    </div>  
+  @endif
   <div class="justify-content-start pb-2">
-    <a href="/home" class="btn btn-success new"><i class="fas fa-backward"></i> Back to Home</a>
+    <a href="/home" class="btn btn-info new"><i class="fas fa-backward"></i> Back to Home</a>
     <a href="/create" class="btn btn-primary new" target="_blank"><i class="fas fa-backward"></i> Back to Form</a>
     <a href="/borrows/pdf" class="btn btn-warning " target="_blank">Export PDF</a>
+    <a href="/borrows/excel" class="btn btn-success " target="_blank">Export Excel</a>
   </div>
   <div class="container">
     <div class="card w-100" style="margin-top: 3rem; margin-bottom: 2rem">
@@ -29,6 +35,18 @@
                     <img src="{{ asset('assets/img/rpl.png') }}" style="width: 110px; height: 110px">
                 </div>
             </div>
+            
+        <form action="{{ route('import.excel') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="row">
+                <div class="col-10">
+                    <input type="file" name="file" class="form-control">
+                </div>
+                <div class="col-2">
+                    <button type="submit" class="btn btn-success">Import User Data</button>
+                </div>
+            </div>       
+        </form>
             <div class="card">
                 <div class="container table table-responsive ">
                     <table class="table table-hover table-bordered table-stiped ">
@@ -64,18 +82,22 @@
                                             <form action="{{ route('delete', $borrow['id']) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                            <button type="submit" class="fa-sharp fa-solid fa-delete-left" style="border:none"> </button>
+                                            <button type="submit" class="fa-sharp fa-solid fa-delete-left" style="border:none;  background:none;"> </button>
                                           </form>
                                     </div>
                                     <div class="ml-auto">
+                                        @if (is_null($borrow['done_time']))
+                                        
                                         <form action="{{ route('update', $borrow->id) }}" method="POST">
                                             @method('PATCH')
                                             @csrf
-                                            <button type="submit" class="fa-sharp fa-solid fa-arrow-rotate-left" style="border: none; background:none;">
-                                            </button>
-                                              
-                                        </form>
-                                        
+                                            <button type="submit" class="fa-sharp fa-solid fa-arrow-rotate-left" 
+                                             style="border: none; background:none;">
+                                            </button> 
+                                        </form>  
+                                        @endif
+                                        <button style="padding-left: 7px" class="text-dark btn btn-outline-none" data-bs-toggle="modal" data-bs-target="#detail" id="detailData" data-id="{{ $borrow['id'] }}">
+                                            <i class="fa-sharp fa-solid fa-eye"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -89,6 +111,22 @@
         </div>
     </div>
   </div>
-
+<!-- Modal -->
+<div class="modal fade" id="detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Detail Peminjaman</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="look">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
  
   @endsection

@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use PDF;
+use App\Exports\BorrowsExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\BorrowsImport;
 
 class BorrowController extends Controller
 {
@@ -50,7 +53,7 @@ class BorrowController extends Controller
         ]);
         return redirect()->route('data',)->with('successAdd', 'Anda berhasil mengisi data peminjam!');
     }
-    public function data(){
+    public function data(){ 
 
         $borrows = Borrow::orderBy('date', 'DESC')->simplePaginate(5);
         //kalau orderBy buat 2 argument (nama fieldnya dan tipe nya ASC/DESC)
@@ -59,6 +62,7 @@ class BorrowController extends Controller
         return view('dashboard.data', compact('borrows'));
     }
 
+    //pdf
     public function createPDF()
     {
         $borrows = Borrow::orderBy('date', 'DESC')->get();
@@ -70,9 +74,27 @@ class BorrowController extends Controller
         // download PDF file with download method
         return $pdf->download('data_peminjaman.pdf');
     }
-     public function show(borrow $borrows)
-     {
 
+    //excel
+    public function export()
+    {
+        return Excel::download(new BorrowsExport, 'DataPeminjaman.xlsx');
+
+    }
+
+    public function import()
+    {
+        Excel::import(new BorrowsImport,request()->file('file'));
+        return back()->with('importSuccess',"Selamat Anda berhasil menginport file!");
+
+    }
+
+     public function show($id)
+     {
+        $borrow = Borrow::find($id);
+        return response()->json([
+            'data' => $borrow
+        ]);
      }
 
      public function edit($id)

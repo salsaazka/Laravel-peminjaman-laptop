@@ -22,6 +22,7 @@ Route::middleware('isLogin')->group(function () {
     Route::patch('/update/{id}', [BorrowController::class, 'update'])->name('update');
     Route::delete('/delete/{id}', [BorrowController::class, 'destroy'])->name('delete');
     Route::get('/borrows/pdf', [BorrowController::class, 'createPDF']);
-// Route::get('/', function(){
-//    return view('dashboard.index');
+    Route::get('/borrows/excel', [BorrowController::class, 'export'])->name('export.excel');
+    Route::post('/import/excel', [BorrowController::class, 'import'])->name('import.excel');
+    Route::get('/detail/{id}', [BorrowController::class, 'show'])->name('detail');
 });
